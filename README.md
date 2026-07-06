@@ -97,7 +97,7 @@ The script runs queries that:
 Install dependencies:
 
 ```bash
-pip install mysql-connector-python plotly
+pip install -r requirements.txt
 ```
 
 Make sure MySQL is installed and running locally.

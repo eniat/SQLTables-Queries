@@ -20,18 +20,17 @@ The project demonstrates database design, relational modelling, SQL querying, CS
 
 ```text
 .
-├── coursework.py
+├── database_schema_analysis.py
 ├── user_accounts.csv
 ├── uploads.csv
 ├── messenger.csv
-├── Coursework.pdf
-├── Coursework.docx        # original design document if present
-└── Coursework.drawio      # ERD/source diagram if present
+├── Report.pdf
+└── ERD.drawio      # ERD/source diagram if present
 ```
 
 ## Report / Design Document
 
-`Coursework.pdf` contains the written database design explanation. It covers the purpose of the database, the three entity sets, primary keys, foreign keys, cascading delete behaviour, the ERD/design model, and normalisation up to 3NF and BCNF.
+`Report.pdf` contains the written database design explanation. It covers the purpose of the database, the three entity sets, primary keys, foreign keys, cascading delete behaviour, the ERD/design model, and normalisation up to 3NF and BCNF.
 
 ## Tech Stack
 
@@ -103,7 +102,7 @@ pip install mysql-connector-python plotly
 
 Make sure MySQL is installed and running locally.
 
-Update the connection details in `coursework.py`:
+Update the connection details in `database_schema_analysis.py`:
 
 ```python
 connection = mysql.connector.connect(
@@ -115,10 +114,10 @@ connection = mysql.connector.connect(
 
 ## Running the Project
 
-Keep the CSV files in the same folder as `coursework.py`, then run:
+Keep the CSV files in the same folder as `database_schema_analysis.py`, then run:
 
 ```bash
-python coursework.py
+python database_schema_analysis.py
 ```
 
 The script connects to MySQL, creates `socialmedia_database`, creates the tables, imports the CSV data, runs the SQL queries, opens the Plotly chart and closes the connection.
@@ -135,7 +134,7 @@ To reset before re-running:
 DROP DATABASE socialmedia_database;
 ```
 
-Then run `coursework.py` again.
+Then run `database_schema_analysis.py` again.
 
 ## Limitations
 
@@ -147,3 +146,15 @@ Then run `coursework.py` again.
 ## What This Demonstrates
 
 This project demonstrates relational database design, MySQL table creation, CSV data loading, SQL query writing, key/foreign-key enforcement, cascading deletes and Python integration with a database backend.
+
+## Dataset notice:
+
+The CSV files in this repository are small synthetic sample datasets created for academic database modelling and portfolio demonstration. They do not contain real social media data, real user accounts, personal data, credentials, or confidential information.
+
+## Usage Notice
+
+This repository is provided for portfolio and review purposes only.
+
+All rights are reserved. No permission is granted to copy, redistribute, submit, or reuse this work, in whole or in part, for academic coursework, assessment, or commercial purposes.
+
+Where this repository relates to university coursework, it is shared only to demonstrate my own technical work and should not be used by other students as a submission or solution.

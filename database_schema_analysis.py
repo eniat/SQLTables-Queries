@@ -10,9 +10,9 @@ def create_mysql_connection(host_name, user_name, user_password):
     """
     try:
         connection = mysql.connector.connect(
-            host='localhost',
-            user='',
-            password=''
+            host=host_name or 'localhost',
+            user=user_name,
+            password=user_password
         )
         if connection.is_connected():
             print("Connected to MySQL")
@@ -284,7 +284,7 @@ def create_likes_chart(conn):
 
 def main():
     # MySQL connection details
-    host_name = ""
+    host_name = "localhost"
     user_name = ""
     user_password = ""
 

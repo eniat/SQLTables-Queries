@@ -20,17 +20,36 @@ The project demonstrates database design, relational modelling, SQL querying, CS
 
 ```text
 .
-├── database_schema_analysis.py
-├── user_accounts.csv
-├── uploads.csv
-├── messenger.csv
-├── Report.pdf
-└── ERD.drawio      # ERD/source diagram if present
+├── code/
+│   ├── database_schema_analysis.py   # Creates the database, loads CSVs, runs queries
+│   ├── user_accounts.csv
+│   ├── uploads.csv
+│   └── messenger.csv
+├── docs/
+│   └── erd.png                       # Entity relationship diagram
+├── ERD.drawio                        # Editable source for the diagram
+├── requirements.txt
+├── LICENSE.txt
+└── README.md
 ```
 
-## Report / Design Document
+## Entity Relationship Model
 
-`Report.pdf` contains the written database design explanation. It covers the purpose of the database, the three entity sets, primary keys, foreign keys, cascading delete behaviour, the ERD/design model, and normalisation up to 3NF and BCNF.
+![ERD for the social media database](docs/erd.png)
+
+`User_Accounts` is the parent entity. Every upload and every message must belong to
+exactly one account, giving a one to many relationship in both directions. Deletes
+cascade from `User_Accounts`, so removing an account removes its uploads and
+messages rather than leaving orphaned rows.
+
+The editable diagram source is `ERD.drawio`.
+
+## Normalisation
+
+All three tables satisfy 1NF and 2NF, and have no transitive dependencies between
+non-prime attributes, so all three meet 3NF. `User_Accounts` also satisfies
+Boyce-Codd Normal Form, since `username` is its only determinant. `Uploads` and
+`Messenger` fall short of BCNF because `username` is a non-key determinant in each.
 
 ## Tech Stack
 
@@ -102,7 +121,7 @@ pip install -r requirements.txt
 
 Make sure MySQL is installed and running locally.
 
-Update the connection details in `database_schema_analysis.py`:
+Update the connection details in `code/database_schema_analysis.py`:
 
 ```python
 connection = mysql.connector.connect(
@@ -114,15 +133,16 @@ connection = mysql.connector.connect(
 
 ## Running the Project
 
-Keep the CSV files in the same folder as `database_schema_analysis.py`, then run:
+The script reads the CSV files from its own directory, so run it from `code/`:
 
 ```bash
+cd code
 python database_schema_analysis.py
 ```
 
-The script connects to MySQL, creates `socialmedia_database`, creates the tables, imports the CSV data, runs the SQL queries, opens the Plotly chart and closes the connection.
-
-The CSV files provide user account records, upload records and message records used to populate the database.
+The script connects to MySQL, creates `socialmedia_database`, creates the tables,
+imports the CSV data, runs the SQL queries, opens the Plotly chart and closes the
+connection.
 
 ## Re-running
 
